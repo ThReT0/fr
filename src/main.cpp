@@ -157,7 +157,7 @@ void autonomous() {
 void opcontrol() {
   // This is preference to what you like to drive on.
   chassis.set_drive_brake(MOTOR_BRAKE_COAST);
-
+pros::Motor intake(8);
   while (true) {
 
     chassis.tank(); // Tank control
@@ -169,6 +169,16 @@ void opcontrol() {
     // . . .
     // Put more user control code here!
     // . . .
+
+
+    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
+      intake=127;
+    } else if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
+
+    } else {
+      intake = 0;
+
+    }
 
     pros::delay(ez::util::DELAY_TIME); // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
